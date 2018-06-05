@@ -1,9 +1,6 @@
 package mcb.blogs;
 
 import mcb.blogs.publisher.BlogPost;
-import mcb.blogs.publisher.BlogPostList;
-import mcb.blogs.publisher.BlogService;
-import mcb.blogs.publisher.restmodel.CreateBlogRequest;
 import org.junit.Test;
 
 
@@ -12,7 +9,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class CreatePostTest {
 
-    @Test
+  /**  @Test
     public void shouldBeAbleToCreateNewPostOnBlog(){
      var blogPostList = new BlogPostList("New Blog Post List");
      var initialListBlog = blogPostList.getItems().size();
@@ -20,7 +17,7 @@ public class CreatePostTest {
      blogPostList.addPost(newPost);
      assertThat(blogPostList.getItems().size(), equalTo(initialListBlog +1));
      assertThat(blogPostList.getItems().get(initialListBlog).getTitle(), equalTo(newPost));
-    }
+    }**/
 
     /**@Test
     public void shouldAbleToCreateNewBlogPost(){
@@ -47,7 +44,16 @@ public class CreatePostTest {
         var initialReply = blogPost.getReplies().size();
 
         blogPost.addReply(blogPost);
-        assertThat(blogPost.getLikes(), equalTo(initialReply +1));
+        assertThat(blogPost.getReplies().size(), equalTo(initialReply +1));
         //assertThat(blogPost.getReplies().get(initialReply).getTitle(), equalTo(blogPost));
     }
+
+    @Test
+    public void shouldBeAbleToRemoveLike(){
+        var blogPost = new BlogPost("My blog Today","CR7 is the best footballer in the world", 1);
+        var initialLike = blogPost.getLikes();
+        blogPost.removeLike();
+        assertThat(blogPost.getLikes(), equalTo(initialLike -1));
+    }
+
 }
