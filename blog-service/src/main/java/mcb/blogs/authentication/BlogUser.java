@@ -1,8 +1,7 @@
 package mcb.blogs.authentication;
 
 import mcb.blogs.publisher.BlogPost;
-import mcb.blogs.publisher.BlogPostList;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

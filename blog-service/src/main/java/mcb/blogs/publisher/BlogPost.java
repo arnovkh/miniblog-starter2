@@ -3,6 +3,7 @@ package mcb.blogs.publisher;
 import mcb.blogs.authentication.BlogUser;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class BlogPost {
@@ -14,17 +15,21 @@ public class BlogPost {
 
     private String body;
 
-    private BlogPost parentPost;
+    private long likes;
+
+//    private BlogPost parentPost;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private BlogUser creator;
 
     protected BlogPost() {
+        this.likes=0;
     }
 
     public BlogPost(String title, String body,long userId) {
         this.title = title;
         this.body = body;
+        this.likes=0;
         this.creator= new BlogUser();
         creator.setId(userId);
 
@@ -33,6 +38,17 @@ public class BlogPost {
     public Long getId() {
         return id;
     }
+
+
+    public Long getLikes() {
+        return likes;
+    }
+
+
+    public Long setLikes(Long likes) {
+        return this.likes = likes;
+    }
+
 
     public String getTitle() {
         return title;
@@ -50,7 +66,32 @@ public class BlogPost {
         this.creator=user;
     }
 
-    public void addBlog(String newBlog) {
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    List<BlogPost> replies ;
+
+    public void setReplies(List<BlogPost> replies)
+    {
+        this.replies= replies;
+    }
+
+    public List<BlogPost> getReplies()
+    {
+       return replies;
+    }
+
+    public void addReply(BlogPost reply)
+    {
+        this.replies.add(reply);
+    }
+
+    public void addLike()
+    {
+        ++this.likes;
+    }
+
+    public void removeLike()
+    {
+        --this.likes;
     }
 
 }
