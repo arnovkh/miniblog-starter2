@@ -2,6 +2,8 @@ package mcb.blogs;
 
 import mcb.blogs.publisher.BlogPost;
 import mcb.blogs.publisher.BlogPostList;
+import mcb.blogs.publisher.BlogService;
+import mcb.blogs.publisher.restmodel.CreateBlogRequest;
 import org.junit.Test;
 
 
@@ -20,19 +22,32 @@ public class CreatePostTest {
      assertThat(blogPostList.getItems().get(initialListBlog).getTitle(), equalTo(newPost));
     }
 
-    @Test
+    /**@Test
     public void shouldAbleToCreateNewBlogPost(){
-      var blogPost = new BlogPost("My Post on CR7", "CR7 is a great footballer",0) ;
-      //var initialTitle = blogPost.getTitle();
-      var initialBody = blogPost.getBody();
-      String newBlog = "My Post on CR7";
-      blogPost.addBlog(newBlog);
+      var blogPost = new CreateBlogRequest();
+        var blogTitle = blogPost.setTitle("My blog Today");
+        var blogBody = blogPost.setBody("CR7 is the best footballer in the world");
+        var blogId = blogPost.setUserId(1);
+        BlogService postBlog = new BlogPost(blogTitle, blogBody,blogId);
       assertThat(blogPost.getBody(), equalTo(initialBody));
       assertThat(blogPost.getTitle(), equalTo(newBlog));
+    }**/
+
+    @Test
+     public void shouldBeAbleToLikePost(){
+      var blogPost = new BlogPost("My blog Today","CR7 is the best footballer in the world", 1);
+      var initialLike = blogPost.getLikes();
+      blogPost.addLike();
+      assertThat(blogPost.getLikes(), equalTo(initialLike +1));
     }
 
     @Test
-     public void shouldBeAbletoLIkePost(){
+    public void shouldBeAbleToReplyAPost(){
+        var blogPost = new BlogPost("My blog Today","CR7 is the best footballer in the world", 1);
+        var initialReply = blogPost.getReplies().size();
 
+        blogPost.addReply(blogPost);
+        assertThat(blogPost.getLikes(), equalTo(initialReply +1));
+        //assertThat(blogPost.getReplies().get(initialReply).getTitle(), equalTo(blogPost));
     }
 }
