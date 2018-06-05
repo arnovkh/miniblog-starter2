@@ -42,13 +42,6 @@ public class BlogService {
 
     }
 
-    @RequestMapping(value = "/user/{id}", method = GET)
-    public ResponseEntity getBlogsForUser(@PathVariable Long id) {
-
-        return ResponseEntity.ok(repository.findAll());
-
-    }
-
 //    @PostMapping
 //    public Mono<ResponseEntity> createUser(@RequestBody Mono<CreateUserRequest> request) {
 //        return request.map(r -> this.repository.save(new UserList(r.getName())))
