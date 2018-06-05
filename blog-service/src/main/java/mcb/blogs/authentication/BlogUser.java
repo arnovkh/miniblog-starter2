@@ -50,5 +50,9 @@ public class BlogUser {
         return username;
     }
 
+    public List<BlogPost> getBlogPosts() {
+        return posts;
+    }
+
 
 }
