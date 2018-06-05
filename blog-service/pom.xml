@@ -106,7 +106,6 @@
 			<groupId>io.requery</groupId>
 			<artifactId>requery</artifactId>
 			<version>1.5.1</version>
-			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>

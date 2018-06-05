@@ -14,16 +14,20 @@ public class BlogPost {
 
     private String body;
 
+    private BlogPost parentPost;
+
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private BlogUser creator;
 
     protected BlogPost() {
     }
 
-    public BlogPost(String title, String body) {
+    public BlogPost(String title, String body,long userId) {
         this.title = title;
         this.body = body;
         this.creator= new BlogUser();
+        creator.setId(userId);
+
 }
 
     public Long getId() {

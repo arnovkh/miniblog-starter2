@@ -19,16 +19,28 @@ public class BlogUser {
 
     private String username;
 
+
+    public BlogUser(String username) {
+        this.username = username; posts = new ArrayList<>();
+    }
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<BlogPost> posts;
 
     public BlogUser() {
         posts = new ArrayList<>();
+
     }
 
-    public BlogUser(String username) {
-        this.username = username;
+    public Long getId() {
+            return id;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
 
     public void setUsername(String username) {
         this.username = username;
