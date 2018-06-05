@@ -32,4 +32,7 @@ public class BlogPostList {
     public List<BlogPost> getItems() {
         return posts;
     }
+
+    public void addPost(String newPost) {
+    }
 }
