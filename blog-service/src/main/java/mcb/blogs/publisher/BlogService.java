@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @RequestMapping("/blogs")
@@ -34,6 +35,24 @@ public class BlogService {
                 .map(BlogPost::getId).map(id -> ResponseEntity.created(URI.create("/blogs/" + id)).build());
 
     }
+
+    @RequestMapping(value = "/{id}/{plusminus}", method = POST)
+    public ResponseEntity ModifyLike(@PathVariable Long id,@PathVariable int plusminus) {
+        var blog = repository.findById(id).get();
+        if(plusminus ==1 ) {
+            blog.addLike();
+        }
+        else
+        {
+            blog.removeLike();
+        }
+        return ResponseEntity.ok(repository.save(blog));
+
+    }
+
+
+
+
 
 
     @GetMapping
