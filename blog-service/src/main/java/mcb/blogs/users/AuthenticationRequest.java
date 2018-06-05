@@ -1,4 +1,4 @@
-package mcb.blogs.authentication;
+package mcb.blogs.users;
 
 public class AuthenticationRequest {
     private String username;

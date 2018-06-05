@@ -1,8 +1,6 @@
 package mcb.blogs.publisher;
 
-import mcb.blogs.authentication.BlogUser;
 import mcb.blogs.publisher.restmodel.CreateBlogRequest;
-import mcb.blogs.publisher.restmodel.CreateUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,7 +9,6 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
@@ -60,11 +57,6 @@ public class BlogService {
         });
 
     }
-
-
-
-
-
 
 
 

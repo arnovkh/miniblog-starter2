@@ -1,4 +1,4 @@
-package mcb.blogs.authentication;
+package mcb.blogs.users;
 
 import org.springframework.data.repository.CrudRepository;
 
