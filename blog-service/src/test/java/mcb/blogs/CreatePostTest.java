@@ -26,7 +26,8 @@ public class CreatePostTest {
       //var initialTitle = blogPost.getTitle();
       var initialBody = blogPost.getBody();
       String newBlog = "My Post on CR7";
-      blogPost.addBlog(newBlog);      assertThat(blogPost.getBody(), equalTo(initialBody));
+      blogPost.addBlog(newBlog);
+      assertThat(blogPost.getBody(), equalTo(initialBody));
       assertThat(blogPost.getTitle(), equalTo(newBlog));
     }
 
