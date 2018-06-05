@@ -101,6 +101,14 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.requery/requery -->
+		<dependency>
+			<groupId>io.requery</groupId>
+			<artifactId>requery</artifactId>
+			<version>1.5.1</version>
+			<scope>runtime</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
