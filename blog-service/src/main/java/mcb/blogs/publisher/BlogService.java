@@ -49,6 +49,19 @@ public class BlogService {
         return ResponseEntity.ok(repository.save(blog));
 
     }
+    @RequestMapping(value = "/{id}/rely", method = POST)
+    public ResponseEntity addReply(@PathVariable Long id,@RequestBody Mono<CreateBlogRequest> request) {
+        return request.map(r ->
+        {
+            var blog = repository.findById(id).get();
+            blog.addReply(new BlogPost(r.getTitle(), r.getBody(), r.getUserId()));
+            this.repository.save(blog);
+            return ResponseEntity.created(URI.create("/blogs/" + id);
+        });
+
+    }
+
+
 
 
 
