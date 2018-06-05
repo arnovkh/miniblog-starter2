@@ -45,4 +45,7 @@ public class BlogPost {
     public void setCreator(BlogUser user) {
         this.creator=user;
     }
+
+    public void addBlog(String newBlog) {
+    }
 }
