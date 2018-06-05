@@ -19,7 +19,6 @@ public class BlogPost {
 
     private long likes;
 
-    private Date
 
 //    private BlogPost parentPost;
 
