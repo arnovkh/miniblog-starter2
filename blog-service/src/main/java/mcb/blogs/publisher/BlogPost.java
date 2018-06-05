@@ -52,4 +52,5 @@ public class BlogPost {
 
     public void addBlog(String newBlog) {
     }
+
 }

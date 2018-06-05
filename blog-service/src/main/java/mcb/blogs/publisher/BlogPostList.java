@@ -1,6 +1,7 @@
 package mcb.blogs.publisher;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,10 +16,13 @@ public class BlogPostList {
     private List<BlogPost> posts;
 
     protected BlogPostList() {
+        posts = new ArrayList<>();
+        name = "";
     }
 
     public BlogPostList(String name) {
         this.name = name;
+        posts = new ArrayList<>();
     }
 
     public Long getId() {

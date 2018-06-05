@@ -40,8 +40,6 @@ public class BlogUser {
         this.id = id;
     }
 
-
-
     public void setUsername(String username) {
         this.username = username;
     }
