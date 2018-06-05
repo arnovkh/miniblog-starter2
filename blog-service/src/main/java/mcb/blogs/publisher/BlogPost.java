@@ -66,7 +66,7 @@ public class BlogPost {
         this.creator=user;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<BlogPost> replies ;
 
     public void setReplies(List<BlogPost> replies)

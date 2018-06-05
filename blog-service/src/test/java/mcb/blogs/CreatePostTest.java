@@ -1,10 +1,8 @@
 package mcb.blogs;
 
 import mcb.blogs.publisher.BlogPost;
-import mcb.blogs.publisher.BlogPostList;
 import org.junit.Test;
 
-import static java.lang.StringUTF16.compareTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
