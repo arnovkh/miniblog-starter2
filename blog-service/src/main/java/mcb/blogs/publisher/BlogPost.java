@@ -2,9 +2,7 @@ package mcb.blogs.publisher;
 
 import mcb.blogs.authentication.BlogUser;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class BlogPost {
@@ -16,6 +14,7 @@ public class BlogPost {
 
     private String body;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private BlogUser creator;
 
     protected BlogPost() {
