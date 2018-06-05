@@ -16,14 +16,16 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 import java.util.Date;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 @Controller
-@RequestMapping("/authenticate")
+@RequestMapping("/users")
 @Scope("request")
-public class AuthenticationService {
+public class UserService {
     private BlogUser user;
     private UserRepository repository;
     @Autowired
-    public AuthenticationService(BlogUser user,UserRepository repository) {
+    public UserService(BlogUser user, UserRepository repository) {
         this.user = user;
     }
 
@@ -66,4 +68,14 @@ public class AuthenticationService {
                 .map(id -> ResponseEntity.created(URI.create("/users/" + id)).build());
     }
 
-}
+
+    @RequestMapping(value = "/{id}/blogs", method = GET)
+    public ResponseEntity getBlogsForUser(@PathVariable Long id) {
+        var user = repository.findById(id);
+        return ResponseEntity.ok(user.map( u ->  u.getBlogPosts()));
+
+
+    }
+
+
+    }

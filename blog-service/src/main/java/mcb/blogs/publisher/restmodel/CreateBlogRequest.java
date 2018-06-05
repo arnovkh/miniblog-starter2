@@ -4,6 +4,7 @@ public class CreateBlogRequest {
     private String title;
     private String body;
     private Long userId;
+
     public String getTitle() {
         return title;
     }
