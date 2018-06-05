@@ -66,15 +66,4 @@ public class BlogService {
 
     }
 
-//    @PostMapping
-//    public Mono<ResponseEntity> createUser(@RequestBody Mono<CreateUserRequest> request) {
-//        return request.map(r -> this.repository.save(new UserList(r.getName())))
-//                .map(UserList::getId)
-//                .map(id -> ResponseEntity.created(URI.create("/users/" + id)).build());
-//    }
-
-//    @GetMapping
-//    public ResponseEntity fetchTodoList() {
-//        return ResponseEntity.ok(repository.findAll());
-//    }
 }
