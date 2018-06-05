@@ -19,16 +19,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
 @RequestMapping("/users")
-@Scope("request")
+@CrossOrigin(origins = "*")
 public class UserService {
     private BlogUser user;
     private UserRepository repository;
     @Autowired
     public UserService(BlogUser user, UserRepository repository) {
         this.user = user;
+        this.repository =repository;
     }
 
-    @PostMapping
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity authenticate(@RequestBody AuthenticationRequest request) throws Exception {
         // generate JWT
 
@@ -60,7 +61,7 @@ public class UserService {
 
     }
 
-        @PostMapping
+    @PostMapping
     public Mono<ResponseEntity> createUser(@RequestBody Mono<CreateUserRequest> request) {
         return request.map(r -> this.repository.save(new BlogUser(r.getName())))
                 .map(BlogUser::getId)
