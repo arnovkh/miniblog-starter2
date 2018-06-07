@@ -13,8 +13,11 @@ export class BlogService {
     this.RefreshPosts();
   }
 
+ public  getBlogs(): BlogPost[] {
+   return this._blogs;
+ }
 
-  RefreshPosts()  {
+ public  RefreshPosts()  {
     this.http.get<BlogPost[]>('http://localhost:8083/blogs')
       .subscribe( blogs =>   { this._blogs = blogs; } );
   }

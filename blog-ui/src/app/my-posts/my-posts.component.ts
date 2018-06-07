@@ -10,10 +10,10 @@ import {BlogService} from '../BlogService';
 })
 @Injectable
 export class MyPostsComponent implements OnInit {
+private service: BlogService;
 
-
-  constructor( private service: BlogService ) {
-
+  constructor( service: BlogService ) {
+   this.service = service;
   }
 
 
@@ -22,7 +22,7 @@ export class MyPostsComponent implements OnInit {
 
   public getPosts(userId: number)  {
 
-    return this._blogs;
+    return this.service.getBlogs();
   }
 
 }
