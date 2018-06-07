@@ -23,17 +23,15 @@ public class BlogService {
     }
 
     @PostMapping
-    public Mono<ResponseEntity> createBlog(@RequestBody Mono<CreateBlogRequest> request) {
-        return request.map(r ->
-        {
-            BlogPost blog = new BlogPost(r.getTitle(), r.getBody(),r.getUserId());
-            return this.repository.save(blog);
-        })
-                .map(BlogPost::getId).map(id -> ResponseEntity.created(URI.create("/blogs/" + id)).build());
+    public ResponseEntity createBlog(@RequestBody CreateBlogRequest request) {
+
+            BlogPost blog = new BlogPost(request.getTitle(), request.getBody(),request.getUserId());
+            this.repository.save(blog);
+            return ResponseEntity.created(URI.create("/blogs/"  )).build();
 
     }
 
-    @RequestMapping(value = "/{id}/{plusminus}", method = POST)
+    @RequestMapping(value = "/{id}/like/{plusminus}", method = POST)
     public ResponseEntity ModifyLike(@PathVariable Long id,@PathVariable int plusminus) {
         var blog = repository.findById(id).get();
         if(plusminus ==1 ) {
@@ -46,17 +44,13 @@ public class BlogService {
         return ResponseEntity.ok(repository.save(blog));
 
     }
-    @RequestMapping(value = "/{id}/rely", method = POST)
-    public Mono<ResponseEntity> addReply(@PathVariable Long id,@RequestBody Mono<CreateBlogRequest> request) {
-        return request.map(r ->
-        {
-            var blog = repository.findById(id).get();
-            blog.addReply(new BlogPost(r.getTitle(), r.getBody(), r.getUserId()));
-            this.repository.save(blog);
-            return ResponseEntity.created(URI.create("/blogs/" + id)).build();
-        });
+    @RequestMapping(value = "/{id}/reply", method = POST)
+    public ResponseEntity addReply(@PathVariable Long id,@RequestBody CreateBlogRequest request) {
 
-
+        var blog = repository.findById(id).get();
+        blog.addReply(new BlogPost(request.getTitle(), request.getBody(), request.getUserId()));
+        this.repository.save(blog);
+        return ResponseEntity.created(URI.create("/blogs/" + id)).build();
     }
 
 

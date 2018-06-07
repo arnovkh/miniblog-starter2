@@ -23,7 +23,7 @@ public class BlogUser {
         this.username = username; posts = new ArrayList<>();
     }
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.MERGE , orphanRemoval = true, fetch = FetchType.EAGER)
     private List<BlogPost> posts;
 
     public BlogUser() {

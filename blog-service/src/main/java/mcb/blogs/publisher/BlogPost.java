@@ -1,5 +1,6 @@
 package mcb.blogs.publisher;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import mcb.blogs.users.BlogUser;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class BlogPost {
 
 //    private BlogPost parentPost;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE , orphanRemoval = true, fetch = FetchType.EAGER)
     private BlogUser creator;
 
     protected BlogPost() {
@@ -73,7 +74,8 @@ public class BlogPost {
         this.creator=user;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REMOVE,CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.LAZY)
+   // @JsonManagedReference
     List<BlogPost> replies ;
 
     public void setReplies(List<BlogPost> replies)

@@ -62,10 +62,17 @@ public class UserService {
     }
 
     @PostMapping
-    public Mono<ResponseEntity> createUser(@RequestBody Mono<CreateUserRequest> request) {
-        return request.map(r -> this.repository.save(new BlogUser(r.getName())))
-                .map(BlogUser::getId)
-                .map(id -> ResponseEntity.created(URI.create("/users/" + id)).build());
+    public ResponseEntity createUser(@RequestBody CreateUserRequest request) {
+    //    ;
+//                .map(BlogUser::getId)
+//                .map(id -> ResponseEntity.created(URI.create("/users/" + id)).build());
+       return ResponseEntity.ok( this.repository.save(new BlogUser(request.getUsername())));
+    }
+
+    @GetMapping
+    public ResponseEntity getUsers() {
+
+            return ResponseEntity.ok(repository.findAll());
     }
 
 
